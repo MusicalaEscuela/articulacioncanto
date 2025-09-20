@@ -1,0 +1,121 @@
+/* ===== Paleta Musicala ===== */
+:root {
+  --azul-bach: #220A63;
+  --azul-mozart: #0C41C4;
+  --violeta-beethoven: #680DBF;
+  --violeta-vivaldi: #5729FF;
+  --magenta-brahms: #CE0071;
+  --azul-wagner: #0C0A1E;
+  --gris-tchaikovsky: #232323;
+  --gris-haydn: #E6E8E8;
+  --blanco-debussy: #F9F9F9;
+  --card-shadow: 0 10px 30px rgba(0,0,0,.10);
+  --radius-2xl: 24px;
+}
+
+/* ===== Reset & base ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  color: var(--gris-tchaikovsky);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(87,41,255,.12), transparent 60%),
+    radial-gradient(1000px 500px at 110% -20%, rgba(206,0,113,.08), transparent 60%),
+    var(--blanco-debussy);
+}
+img { max-width: 100%; display: block; }
+a { color: var(--azul-mozart); text-decoration: none; }
+.wrap { max-width: 1080px; margin: auto; padding: 20px; }
+
+/* ===== Botón Audio fijo ===== */
+.btn-audio {
+  position: fixed; left: 16px; top: 16px; z-index: 9999;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--violeta-beethoven), var(--azul-mozart));
+  color: white; border: 0; border-radius: 999px; padding: 10px 16px;
+  font-weight: 700; box-shadow: 0 6px 20px rgba(12,65,196,.35);
+  cursor: pointer;
+}
+.btn-audio:active { transform: translateY(1px); }
+
+/* ===== Header ===== */
+header {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0 6px;
+}
+header img.logo { height: 40px; width: auto; }
+header .brand { font-weight: 900; letter-spacing: .3px; color: var(--azul-bach); }
+.badge {
+  display: inline-block; font-size: 12px; padding: 4px 10px; border-radius: 999px;
+  background: #EEF3FF; color: var(--azul-mozart); font-weight: 700;
+}
+
+/* ===== Hero ===== */
+.hero {
+  margin-top: 10px;
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px;
+  background: white; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--card-shadow);
+}
+.hero .copy { padding: 28px 28px 24px; }
+.hero h1 {
+  font-size: 34px; margin: 0 0 10px;
+  background: linear-gradient(90deg, var(--azul-mozart), var(--violeta-beethoven));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero p { margin: 0 0 12px; line-height: 1.6; }
+.hero .cta { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  border: 0; cursor: pointer; border-radius: 14px; padding: 12px 16px; font-weight: 700;
+  background: var(--azul-mozart); color: #fff; box-shadow: 0 6px 16px rgba(12,65,196,.25);
+}
+.btn.alt { background: var(--violeta-beethoven); }
+.hero .media {
+  background: linear-gradient(135deg, rgba(12,65,196,.10), rgba(104,13,191,.06));
+  display: flex; align-items: center; justify-content: center; padding: 14px;
+}
+.hero .media img { border-radius: 16px; box-shadow: 0 8px 28px rgba(0,0,0,.15); }
+
+/* ===== Cards ===== */
+.card {
+  background: white; border-radius: 18px; box-shadow: var(--card-shadow);
+  padding: 20px; margin-top: 22px;
+}
+.card h2 { margin-top: 0; color: var(--azul-bach); }
+.card p { line-height: 1.6; }
+.muted { color: #575757; }
+
+/* ===== Tabs ===== */
+.tabs {
+  margin-top: 22px; display: flex; gap: 8px; flex-wrap: wrap;
+  background: rgba(12,65,196,.06); padding: 8px; border-radius: 14px;
+}
+.tab {
+  background: white; border: 2px solid transparent; color: var(--gris-tchaikovsky);
+  border-radius: 12px; padding: 10px 14px; font-weight: 700; cursor: pointer;
+}
+.tab.active {
+  border-color: var(--azul-mozart); color: var(--azul-mozart);
+  box-shadow: 0 4px 14px rgba(12,65,196,.15);
+}
+.tab-panel { margin-top: 16px; }
+.tab-panel.is-hidden { display: none; }
+
+/* ===== Grid para ejemplos, tips y errores ===== */
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+.card h3 { margin: 0 0 8px; color: var(--azul-bach); }
+
+/* ===== Trabalenguas (mini interactivo) ===== */
+.twister {
+  display: flex; align-items: center; gap: 12px; justify-content: space-between; margin-top: 12px;
+}
+.twister p { margin: 0; font-weight: 700; }
+.twister .tw { font-size: 18px; }
+
+/* ===== Footer ===== */
+footer { margin: 30px 0 12px; text-align: center; color: #666; font-size: 14px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+}
