@@ -11,10 +11,14 @@
   --blanco-debussy: #F9F9F9;
   --card-shadow: 0 10px 30px rgba(0,0,0,.10);
   --radius-2xl: 24px;
+
+  /* NUEVO: ancho máximo reutilizable para Wix */
+  --wrap: 1200px;
 }
 
 /* ===== Reset & base ===== */
 * { box-sizing: border-box; }
+html,body { width: 100%; }
 body {
   margin: 0;
   font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
@@ -24,9 +28,17 @@ body {
     radial-gradient(1000px 500px at 110% -20%, rgba(206,0,113,.08), transparent 60%),
     var(--blanco-debussy);
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block; height: auto; }
 a { color: var(--azul-mozart); text-decoration: none; }
-.wrap { max-width: 1080px; margin: auto; padding: 20px; }
+
+/* CONTENEDOR Wix-friendly:
+   - width: min(1200px, 100% - 32px) asegura cabida con paddings laterales
+   - ÚSALO en todos tus programas para respetar el límite de Wix */
+.wrap {
+  width: min(var(--wrap), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 16px;
+}
 
 /* ===== Botón Audio fijo ===== */
 .btn-audio {
@@ -58,7 +70,8 @@ header .brand { font-weight: 900; letter-spacing: .3px; color: var(--azul-bach);
 }
 .hero .copy { padding: 28px 28px 24px; }
 .hero h1 {
-  font-size: 34px; margin: 0 0 10px;
+  font-size: clamp(28px, 3.2vw, 34px);
+  margin: 0 0 10px;
   background: linear-gradient(90deg, var(--azul-mozart), var(--violeta-beethoven));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
@@ -69,11 +82,16 @@ header .brand { font-weight: 900; letter-spacing: .3px; color: var(--azul-bach);
   background: var(--azul-mozart); color: #fff; box-shadow: 0 6px 16px rgba(12,65,196,.25);
 }
 .btn.alt { background: var(--violeta-beethoven); }
+
 .hero .media {
   background: linear-gradient(135deg, rgba(12,65,196,.10), rgba(104,13,191,.06));
   display: flex; align-items: center; justify-content: center; padding: 14px;
 }
-.hero .media img { border-radius: 16px; box-shadow: 0 8px 28px rgba(0,0,0,.15); }
+.hero .media img {
+  border-radius: 16px; box-shadow: 0 8px 28px rgba(0,0,0,.15);
+  max-width: 560px; /* evita que la imagen empuje más allá del wrap */
+  width: 100%;
+}
 
 /* ===== Cards ===== */
 .card {
@@ -101,7 +119,9 @@ header .brand { font-weight: 900; letter-spacing: .3px; color: var(--azul-bach);
 .tab-panel.is-hidden { display: none; }
 
 /* ===== Grid para ejemplos, tips y errores ===== */
-.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+.grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px;
+}
 .card h3 { margin: 0 0 8px; color: var(--azul-bach); }
 
 /* ===== Trabalenguas (mini interactivo) ===== */
@@ -114,8 +134,13 @@ header .brand { font-weight: 900; letter-spacing: .3px; color: var(--azul-bach);
 /* ===== Footer ===== */
 footer { margin: 30px 0 12px; text-align: center; color: #666; font-size: 14px; }
 
-/* ===== Responsive ===== */
+/* ===== Responsivo ===== */
+@media (max-width: 1240px) {
+  /* cuando el viewport es menor a ~wrap, mantenemos aire lateral */
+  .wrap { width: min(var(--wrap), calc(100% - 24px)); padding: 16px 12px; }
+}
 @media (max-width: 980px) {
   .hero { grid-template-columns: 1fr; }
   .grid { grid-template-columns: 1fr; }
+  .hero .media img { max-width: 100%; }
 }
